@@ -11,7 +11,7 @@ class Tag(models.Model):
 
 
 class Product(models.Model):
-    # TODO: Do we want just a description, both it and a name, or does name count as description?
+    name = models.CharField(max_length=255)
     description = models.TextField()
     # link many-to-one relationship with categories. All products belong to one category.
     category = models.ForeignKey(Category, on_delete=models.CASCADE) # cascade to avoid orphan
