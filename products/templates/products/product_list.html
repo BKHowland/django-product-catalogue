@@ -6,6 +6,13 @@
     <title>Products List</title>
 </head>
 <body>
-    <h1>List of Products</h1>
+    <section>
+        <h1>List of Products</h1>
+
+        {% comment %} use data from view to populate page {% endcomment %}
+        {% for product in products %}
+            <li>{{ product.name }}</li>
+        {% endfor %}
+    </section>
 </body>
 </html>
