@@ -39,6 +39,7 @@ class ProductListViewTests(TestCase):
         )
         # hammer has no tags intentionally to test products with zero tags still show up
 
+        # get the full url for for the products list page
         self.url = reverse("products:product_list")
 
     def test_no_filters_returns_all_products(self):
