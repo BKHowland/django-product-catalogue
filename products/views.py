@@ -7,11 +7,17 @@ from django.db.models import Q
 def product_list(request):
     """
     Handles requests to the product list page.
-    Displays all products that match all applied user-configurable filters. 
-    Users can filter by searching for name/description matches, category, or associated tags. 
+    Displays all products that match all applied user-configurable filters.
+    Users can filter by searching for name/description matches, category, or associated tags.
     """
     # get all product objects using the Product model.
-    products = Product.objects.all().order_by("name")
+    # we know we need categories and tags for each, telling django early to join reduces the query count.
+    products = (
+        Product.objects.all()
+        .select_related("category")
+        .prefetch_related("tags")
+        .order_by("name")
+    )
     categories = Category.objects.all()
     tags = Tag.objects.all()
 
@@ -31,6 +37,7 @@ def product_list(request):
     if tag_ids:
         # we want to get all products where the tag id is in the tag ids requested.
         products = products.filter(tags__id__in=tag_ids).distinct()
+
     # params are the request, the template file, plus the Product data as a python dict.
     return render(
         request,
@@ -39,7 +46,7 @@ def product_list(request):
             "products": products,
             "categories": categories,
             "tags": tags,
-            "search_query": search_query or "", # avoid None appearing in search box
+            "search_query": search_query or "",  # avoid None appearing in search box
             "selected_category": int(category_id) if category_id else None,
             "selected_tags": list(map(int, tag_ids)) if tag_ids else None,
         },
