@@ -26,10 +26,10 @@ A Django project that models a product catalogue. It includes products, categori
 1. **Clone the repo and create a virtual environment**
 
    ```bash
-   git clone <this-repo-url>
+   git clone https://github.com/BKHowland/django-product-catalogue.git
    cd django-product-catalogue
    python -m venv .venv
-   .\venv\Scripts\activate
+   .venv\Scripts\activate
    ```
 
 2. **Install dependencies**
