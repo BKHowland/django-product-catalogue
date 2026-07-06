@@ -1,0 +1,496 @@
+[
+{
+  "model": "products.category",
+  "pk": 1,
+  "fields": {
+    "name": "Lighting"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 2,
+  "fields": {
+    "name": "Tools"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 3,
+  "fields": {
+    "name": "Wiring"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 4,
+  "fields": {
+    "name": "Safety Equipment"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 5,
+  "fields": {
+    "name": "Switches & Receptacles"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 6,
+  "fields": {
+    "name": "Grounding & Bonding"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 7,
+  "fields": {
+    "name": "Cable Management"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 8,
+  "fields": {
+    "name": "Industrial Controls"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 1,
+  "fields": {
+    "name": "Copper"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 2,
+  "fields": {
+    "name": "Aluminum"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 3,
+  "fields": {
+    "name": "Indoor"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 4,
+  "fields": {
+    "name": "Outdoor"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 5,
+  "fields": {
+    "name": "LED"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 6,
+  "fields": {
+    "name": "High-Voltage"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 7,
+  "fields": {
+    "name": "Industrial"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 8,
+  "fields": {
+    "name": "Portable"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 9,
+  "fields": {
+    "name": "Insulated"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 10,
+  "fields": {
+    "name": "Waterproof"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 11,
+  "fields": {
+    "name": "Steel"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 12,
+  "fields": {
+    "name": "corrosion-resistant"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 13,
+  "fields": {
+    "name": "Residential"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "name": "Copper Building Wire 12 AWG",
+    "description": "General purpose indoor copper wiring for residential circuits.",
+    "category": 3,
+    "tags": [
+      1,
+      3,
+      9
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "name": "Aluminum Service Wire",
+    "description": "Outdoor-rated aluminum service entrance cable. Brings power from a utility's transformer or overhead lines to a home or building.",
+    "category": 3,
+    "tags": [
+      2,
+      4,
+      6,
+      9,
+      10
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "name": "Bare ACSR Cable 2 AWG",
+    "description": "Aluminum Conductor Steel Reinforced (ACSR) high-voltage cable for outdoor power distribution lines.",
+    "category": 3,
+    "tags": [
+      2,
+      4,
+      6,
+      7
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "name": "GFCI Duplex Outlet",
+    "description": "Duplex outlet with GFCI protection for residential use.",
+    "category": 5,
+    "tags": [
+      3,
+      9
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "name": "Decora Light Switch",
+    "description": "Rocker switch featuring a wide, flat paddle to turn lights on or off.",
+    "category": 5,
+    "tags": [
+      3,
+      9
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 6,
+  "fields": {
+    "name": "Double Throw Safety Switch",
+    "description": "Provide emergency back up power connections in accordance with the National Electrical Code and the capability of switching two loads between one power source.",
+    "category": 5,
+    "tags": [
+      2,
+      6,
+      7,
+      9
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 7,
+  "fields": {
+    "name": "LED Ceiling Panel Light",
+    "description": "Flat panel LED light for indoor ceilings. 2000 lumen.",
+    "category": 1,
+    "tags": [
+      3,
+      5
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 8,
+  "fields": {
+    "name": "Industrial Flood Light",
+    "description": "High-output outdoor lighting for job sites.",
+    "category": 1,
+    "tags": [
+      4,
+      7,
+      10
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 9,
+  "fields": {
+    "name": "Waterproof Strip Lighting",
+    "description": "Flexible LED strip for outdoor/industrial use.",
+    "category": 1,
+    "tags": [
+      3,
+      4,
+      5,
+      10
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 10,
+  "fields": {
+    "name": "Wire Stripper",
+    "description": "Handheld tool for stripping electrical wires.",
+    "category": 2,
+    "tags": [
+      1,
+      2,
+      8,
+      9
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 11,
+  "fields": {
+    "name": "Digital Multimeter",
+    "description": "Multifunctional. Measures voltage, resistance, continuity, and more.",
+    "category": 2,
+    "tags": [
+      7,
+      8,
+      9
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 12,
+  "fields": {
+    "name": "Cordless Electric Drill",
+    "description": "Portable drill for construction and electrical work. Comes with 20v Battery.",
+    "category": 2,
+    "tags": [
+      3,
+      4,
+      7,
+      8
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 13,
+  "fields": {
+    "name": "Insulated Lineman's Gloves",
+    "description": "Electrical safety gloves rated for high voltage work.",
+    "category": 4,
+    "tags": [
+      6,
+      7,
+      9
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 14,
+  "fields": {
+    "name": "OSHA Certified Hard Hat",
+    "description": "Head protection for construction environments. OSHA Certified.",
+    "category": 4,
+    "tags": [
+      3,
+      4,
+      7,
+      8
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 15,
+  "fields": {
+    "name": "Impact Resistant Safety Goggles",
+    "description": "Eye protection for industrial work.",
+    "category": 4,
+    "tags": [
+      3,
+      4,
+      7,
+      8
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 16,
+  "fields": {
+    "name": "Copper Ground Rod (8 ft)",
+    "description": "Solid copper-bonded steel rod used to establish a safe electrical grounding system for residential and commercial installations.",
+    "category": 6,
+    "tags": [
+      1,
+      4,
+      7,
+      11,
+      13
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 17,
+  "fields": {
+    "name": "Mechanical Ground Clamp",
+    "description": "Heavy-duty clamp designed to securely connect grounding conductors to rods, pipes, or structural steel.",
+    "category": 6,
+    "tags": [
+      7,
+      11,
+      12
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 18,
+  "fields": {
+    "name": "Ground Bar Kit",
+    "description": "Copper grounding bar with mounting hardware for organizing grounding conductors inside electrical panels.",
+    "category": 6,
+    "tags": [
+      1,
+      3,
+      7
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 19,
+  "fields": {
+    "name": "Nylon Cable Tie Pack",
+    "description": "Assorted nylon cable ties for bundling and securing wiring in electrical installations.",
+    "category": 7,
+    "tags": [
+      3,
+      7,
+      10,
+      13
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 20,
+  "fields": {
+    "name": "1/2\" Flex Aluminum Conduit",
+    "description": "Flexible metal conduit used to protect and route electrical wiring in a building or structure.",
+    "category": 7,
+    "tags": [
+      2,
+      3,
+      7,
+      12
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 21,
+  "fields": {
+    "name": "Cable Tray Support Bracket",
+    "description": "Steel mounting bracket designed to support cable tray systems in commercial and industrial buildings.",
+    "category": 7,
+    "tags": [
+      3,
+      7,
+      11
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 22,
+  "fields": {
+    "name": "Magnetic Motor Contactor",
+    "description": "Electrically controlled switch used to start and stop three-phase motors in industrial applications.",
+    "category": 8,
+    "tags": [
+      3,
+      6,
+      7,
+      9
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 23,
+  "fields": {
+    "name": "DIN Rail Terminal Block",
+    "description": "Modular terminal block for organizing and connecting control panel wiring.",
+    "category": 8,
+    "tags": [
+      3,
+      7,
+      8
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 24,
+  "fields": {
+    "name": "Control Transformer (500 VA)",
+    "description": "Transformer that provides reduced control voltage for industrial machinery and automation equipment.",
+    "category": 8,
+    "tags": [
+      6,
+      7,
+      9
+    ]
+  }
+}
+]
