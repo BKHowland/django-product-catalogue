@@ -11,10 +11,10 @@ def product_list(request):
     tags = Tag.objects.all()
 
     # get the search query:
-    search_term = request.GET.get("search")
-    if search_term:
+    search_query = request.GET.get("search")
+    if search_query:
         products = products.filter(
-            Q(name__icontains=search_term) | Q(description__icontains=search_term)
+            Q(name__icontains=search_query) | Q(description__icontains=search_query)
         )
 
     category_id = request.GET.get("category")
@@ -30,5 +30,12 @@ def product_list(request):
     return render(
         request,
         "products/product_list.html",
-        {"products": products, "categories": categories, "tags": tags},
+        {
+            "products": products,
+            "categories": categories,
+            "tags": tags,
+            "search_query": search_query,
+            "selected_category": category_id,
+            "selected_tags": tag_ids,
+        },
     )
