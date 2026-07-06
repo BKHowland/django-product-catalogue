@@ -34,8 +34,8 @@ def product_list(request):
             "products": products,
             "categories": categories,
             "tags": tags,
-            "search_query": search_query,
-            "selected_category": category_id,
-            "selected_tags": list(map(int, tag_ids)),
+            "search_query": search_query or "", # avoid None appearing in search box
+            "selected_category": int(category_id) if category_id else None,
+            "selected_tags": list(map(int, tag_ids)) if tag_ids else None,
         },
     )

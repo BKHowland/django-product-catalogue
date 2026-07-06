@@ -17,7 +17,7 @@
                 {% for category in categories %}
                     <option value="{{ category.id }}"
                         {% comment %} category.id is an int, so we have to normalize to str {% endcomment %}
-                        {% if selected_category == category.id|stringformat:"s" %}selected{% endif %}>
+                        {% if selected_category == category.id %}selected{% endif %}>
                         {{ category.name }}
                     </option>
                 {% endfor %}
