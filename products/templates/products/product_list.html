@@ -9,7 +9,10 @@
     <section>
         <h1>List of Products</h1>
 
+        
         <form action="" method="get">
+            <a href="{% url 'products:product_list' %}" class="btn btn-secondary">Reset Filters</a>
+            
             <input type="text" name="search" placeholder="Search all Products..." value="{{ search_query }}">
             
             <select name="category">
