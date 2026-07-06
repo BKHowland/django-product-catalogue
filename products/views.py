@@ -5,6 +5,11 @@ from django.db.models import Q
 
 # Create your views here.
 def product_list(request):
+    """
+    Handles requests to the product list page.
+    Displays all products that match all applied user-configurable filters. 
+    Users can filter by searching for name/description matches, category, or associated tags. 
+    """
     # get all product objects using the Product model.
     products = Product.objects.all().order_by("name")
     categories = Category.objects.all()

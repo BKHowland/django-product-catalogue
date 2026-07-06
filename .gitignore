@@ -51,6 +51,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# Custom items
+# Custom items. Dont push the DB to repo, instead provide data for seeding. 
 *.pyc
 db.sqlite3

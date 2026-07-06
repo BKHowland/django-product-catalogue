@@ -51,7 +51,7 @@ A small Django project that models products, categories, and tags, with a front-
    tags, and products is included so you don't have to re-enter data by hand:
 
    ```bash
-   python manage.py loaddata sample_data
+   python manage.py loaddata sample_data.json
    ```
 
    This loads the same data used to test the search/filter functionality locally (created via the Django admin).
@@ -77,7 +77,7 @@ If you add or edit data through the admin and want to refresh the fixture
 (e.g. after adding more products), run:
 
 ```bash
-python manage.py dumpdata products --indent 2 --output products/fixtures/sample_data.json
+python manage.py dumpdata products --indent 2 > products/fixtures/sample_data.json
 ```
 
 ## Assumptions & notes
