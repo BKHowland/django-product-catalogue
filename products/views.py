@@ -36,6 +36,6 @@ def product_list(request):
             "tags": tags,
             "search_query": search_query,
             "selected_category": category_id,
-            "selected_tags": tag_ids,
+            "selected_tags": list(map(int, tag_ids)),
         },
     )

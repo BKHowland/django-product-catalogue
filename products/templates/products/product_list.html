@@ -32,7 +32,7 @@
                             type="checkbox"
                             name="tags"
                             value="{{ tag.id }}"
-                            {% if tag.id|stringformat:"s" in selected_tags %}
+                            {% if tag.id in selected_tags %}
                                 checked
                             {% endif %}
                         >
