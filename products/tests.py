@@ -6,6 +6,7 @@ from .models import Category, Tag, Product
 
 class ProductListViewTests(TestCase):
     """Test Cases for the products list view functionality."""
+
     def setUp(self):
         """Creates the test categories, tags, and products. Runs before every test! Reused ARRANGE step."""
         # Two categories so we can check that category filtering works
@@ -91,7 +92,9 @@ class ProductListViewTests(TestCase):
     def test_filter_by_multiple_tags_uses_or_logic(self):
         """Test that selecting two tags should return products matching EITHER tag"""
         # ACT
-        response = self.client.get(self.url, {"tags": [self.tag_sale.id, self.tag_new.id]})
+        response = self.client.get(
+            self.url, {"tags": [self.tag_sale.id, self.tag_new.id]}
+        )
         products = list(response.context["products"])
         # ASSERT
         self.assertEqual(products, [self.drill, self.lamp])
@@ -99,7 +102,9 @@ class ProductListViewTests(TestCase):
     def test_combined_search_and_category_filter(self):
         """Test Search and category filters can be combined"""
         # ACT
-        response = self.client.get(self.url, {"search": "hammer", "category": self.tools.id})
+        response = self.client.get(
+            self.url, {"search": "hammer", "category": self.tools.id}
+        )
         products = list(response.context["products"])
         # ASSERT
         self.assertEqual(products, [self.hammer])
@@ -107,7 +112,9 @@ class ProductListViewTests(TestCase):
     def test_combined_filters_with_no_matches(self):
         """Test that searches that match nothing return an empty list."""
         # ACT
-        response = self.client.get(self.url, {"search": "Lamp", "category": self.tools.id})
+        response = self.client.get(
+            self.url, {"search": "Lamp", "category": self.tools.id}
+        )
         # ASSERT
         self.assertEqual(list(response.context["products"]), [])
 
@@ -116,7 +123,9 @@ class ProductListViewTests(TestCase):
         # ARRANGE (plus the setup function)
         self.lamp.tags.add(self.tag_new)  # add second tag to lamp
         # ACT
-        response = self.client.get(self.url, {"tags": [self.tag_sale.id, self.tag_new.id]})
+        response = self.client.get(
+            self.url, {"tags": [self.tag_sale.id, self.tag_new.id]}
+        )
         products = list(response.context["products"])
         # ASSERT
         self.assertEqual(products.count(self.lamp), 1)
