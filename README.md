@@ -87,7 +87,7 @@ In the making of this project, I made several assumptions based on ambiguity in 
     - While the instructions only mention description, I assumed this was not the same as a product's name, and searching should work on both. 
 - Selecting multiple tags returns products that have **at least one** of the selected tags (OR logic), not products that have all of them. This felt like the more natural interpretation of "filter by tags" for a commercial catalogue page.
 - Styling was intentionally kept minimal per the assignment instructions, which state that design/styling are not the focus of the evaluation.
-- Tests were not included in the repo as they are not the focus of the assignment, but features were tested thoroughly.
+- Tests included are not exhaustive as they are not the focus of the assignment, but features were tested thoroughly.
 
 ## AI Usage Disclosure
 
@@ -97,8 +97,9 @@ In compliance with the assignment instructions, AI was used to help with:
     - Guiding learning on best practices
     - Explaining Django features
     - Debugging support
-- Assisting in generating sample data for products in the relevant domain
+- Assisting in generating sample data examples for products in the relevant domain
 - Pointing out possible optimizations
 - CSS adjustments
+- Drafting initial test case strategy and shared test setup
 
-**All code was written, modified, and reviewed by hand.**
+**With exception to the above, all code was written, modified, and reviewed by hand.**
