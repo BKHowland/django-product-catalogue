@@ -25,7 +25,7 @@ def product_list(request):
     tag_ids = request.GET.getlist("tags")
     if tag_ids:
         # we want to get all products where the tag id is in the tag ids requested.
-        products = products.filter(tags__id__in=tag_ids)
+        products = products.filter(tags__id__in=tag_ids).distinct()
     # params are the request, the template file, plus the Product data as a python dict.
     return render(
         request,
