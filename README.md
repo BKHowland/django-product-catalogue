@@ -78,6 +78,14 @@ If you add or edit data through the admin and want to refresh the fixture
 python manage.py dumpdata products --indent 2 > products/fixtures/sample_data.json
 ```
 
+## Running Tests
+
+Some example tests were created for the products list view. You can run these with the following command:
+
+```bash
+python manage.py test products
+```
+
 ## Assumptions & Notes
 
 In the making of this project, I made several assumptions based on ambiguity in the instructions and what would make sense for real-world use cases. These are listed below.
