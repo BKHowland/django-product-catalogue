@@ -11,7 +11,7 @@ def product_list(request):
     Users can filter by searching for name/description matches, category, or associated tags.
     """
     # get all product objects using the Product model.
-    # we know we need categories and tags for each, telling django early to join reduces the query count.
+    # since we know we need categories and tags for each, telling django early to join reduces the query count.
     products = (
         Product.objects.all()
         .select_related("category")
@@ -38,7 +38,7 @@ def product_list(request):
         # we want to get all products where the tag id is in the tag ids requested.
         products = products.filter(tags__id__in=tag_ids).distinct()
 
-    # params are the request, the template file, plus the Product data as a python dict.
+    # params are the request, the template file, plus the catalogue data as a python dict.
     return render(
         request,
         "products/product_list.html",
