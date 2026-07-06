@@ -59,16 +59,37 @@
 
             {% comment %} use data from view to populate page {% endcomment %}
             <main class="products">
-                <ul class="products_list">
-                    {% if products %}
+
+                <table class="products-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Tags</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
                         {% for product in products %}
-                            <li>{{ product.name }}</li>
+                            <tr>
+                                <td>{{ product.name }}</td>
+                                <td>{{ product.description }}</td>
+                                <td>{{ product.category.name }}</td>
+                                <td>
+                                    {% for tag in product.tags.all %}
+                                        {{ tag.name }},
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="4">No products found.</td>
+                            </tr>
                         {% endfor %}
-                    {% else %}
-                        <p>No products found.</p>
-                    {% endif %}
-                    
-                </ul>
+                    </tbody>
+                </table>
+
             </main>
         </div>
     </section>

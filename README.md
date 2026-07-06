@@ -98,4 +98,5 @@ In compliance with the assignment instructions, AI was used to help with:
     - Explaining Django features
     - Debugging support
 - Assisting in generating sample data for products
+- CSS adjustments
 - **All code was written, modified, and reviewed by hand.**
