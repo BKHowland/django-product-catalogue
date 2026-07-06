@@ -1,57 +1,90 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'products/style.css' %}">
     <title>Products List</title>
 </head>
 <body>
     <section>
         <h1>List of Products</h1>
 
-        
         <form action="" method="get">
-            <a href="{% url 'products:product_list' %}" class="btn btn-secondary">Reset Filters</a>
-            
-            <input type="text" name="search" placeholder="Search all Products..." value="{{ search_query }}">
-            
-            <select name="category">
-                <option value=''>All Categories</option>
-                {% for category in categories %}
-                    <option value="{{ category.id }}"
-                        {% comment %} category.id is an int, so we have to normalize to str {% endcomment %}
-                        {% if selected_category == category.id %}selected{% endif %}>
-                        {{ category.name }}
-                    </option>
-                {% endfor %}
-            </select>
+            <div class="top-filters">
+                <a href="{% url 'products:product_list' %}">Reset Filters</a>
+                
+                <input type="text" name="search" placeholder="Search all Products..." value="{{ search_query }}">
+                
+                <select name="category">
+                    <option value=''>All Categories</option>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}"
+                            {% comment %} category.id is an int, so we have to normalize to str {% endcomment %}
+                            {% if selected_category == category.id %}selected{% endif %}>
+                            {{ category.name }}
+                        </option>
+                    {% endfor %}
+                </select>
 
-            <div>
-                <p>Tags:</p>
-
-                {% for tag in tags %}
-                    <label>
-                        <input
-                            type="checkbox"
-                            name="tags"
-                            value="{{ tag.id }}"
-                            {% if tag.id in selected_tags %}
-                                checked
-                            {% endif %}
-                        >
-                        {{ tag.name }}
-                    </label>
-                    <br>
-                {% endfor %}
+                <button type="submit">Search</button>
             </div>
 
-            <button type="submit">Search</button>
-        </form>
+            <div class="page-content">
+                <div class="sidebar">
+                    <p>Tags:</p>
+                    {% for tag in tags %}
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="tags"
+                                value="{{ tag.id }}"
+                                {% if tag.id in selected_tags %}
+                                    checked
+                                {% endif %}
+                            >
+                            {{ tag.name }}
+                        </label>
+                        <br>
+                    {% endfor %}
+                </div>
 
-        {% comment %} use data from view to populate page {% endcomment %}
-        {% for product in products %}
-            <li>{{ product.name }}</li>
-        {% endfor %}
+                {% comment %} use data from view to populate the page {% endcomment %}
+                <main class="products">
+
+                    <table class="products-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Tags</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for product in products %}
+                                <tr>
+                                    <td>{{ product.name }}</td>
+                                    <td>{{ product.description }}</td>
+                                    <td>{{ product.category.name }}</td>
+                                    <td>
+                                        {% for tag in product.tags.all %}
+                                            {{ tag.name }},
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="4">No products found.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </main>
+            </div>
+        </form>
     </section>
 </body>
 </html>

@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+/* Search bar, category, clear button, search button */
+.top-filters {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* tags bar and products list */
+.page-content {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.sidebar {
+    width: 220px;
+}
+
+.products {
+    flex: 1;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.products-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.products-table th,
+.products-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.products-table th {
+    background: #f2f2f2;
+}
+
+/* alternate table colors for readability */
+.products-table tbody tr:nth-child(even) {
+    background: #fafafa;
+}
