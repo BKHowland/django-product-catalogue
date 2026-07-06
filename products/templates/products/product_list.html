@@ -55,43 +55,43 @@
                 </div>
 
                 
-            </form>
+            
 
-            {% comment %} use data from view to populate page {% endcomment %}
-            <main class="products">
+                {% comment %} use data from view to populate page {% endcomment %}
+                <main class="products">
 
-                <table class="products-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Category</th>
-                            <th>Tags</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {% for product in products %}
+                    <table class="products-table">
+                        <thead>
                             <tr>
-                                <td>{{ product.name }}</td>
-                                <td>{{ product.description }}</td>
-                                <td>{{ product.category.name }}</td>
-                                <td>
-                                    {% for tag in product.tags.all %}
-                                        {{ tag.name }},
-                                    {% endfor %}
-                                </td>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Tags</th>
                             </tr>
-                        {% empty %}
-                            <tr>
-                                <td colspan="4">No products found.</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
 
-            </main>
-        </div>
+                        <tbody>
+                            {% for product in products %}
+                                <tr>
+                                    <td>{{ product.name }}</td>
+                                    <td>{{ product.description }}</td>
+                                    <td>{{ product.category.name }}</td>
+                                    <td>
+                                        {% for tag in product.tags.all %}
+                                            {{ tag.name }},
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="4">No products found.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </main>
+            </div>
+        </form>
     </section>
 </body>
 </html>
