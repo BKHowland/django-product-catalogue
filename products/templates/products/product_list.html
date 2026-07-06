@@ -9,8 +9,42 @@
     <section>
         <h1>List of Products</h1>
 
+        
         <form action="" method="get">
-            <input type="text" name="search" placeholder="Search all Products..." value="{{ request.GET.search }}">
+            <a href="{% url 'products:product_list' %}" class="btn btn-secondary">Reset Filters</a>
+            
+            <input type="text" name="search" placeholder="Search all Products..." value="{{ search_query }}">
+            
+            <select name="category">
+                <option value=''>All Categories</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}"
+                        {% comment %} category.id is an int, so we have to normalize to str {% endcomment %}
+                        {% if selected_category == category.id %}selected{% endif %}>
+                        {{ category.name }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <div>
+                <p>Tags:</p>
+
+                {% for tag in tags %}
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="tags"
+                            value="{{ tag.id }}"
+                            {% if tag.id in selected_tags %}
+                                checked
+                            {% endif %}
+                        >
+                        {{ tag.name }}
+                    </label>
+                    <br>
+                {% endfor %}
+            </div>
+
             <button type="submit">Search</button>
         </form>
 
