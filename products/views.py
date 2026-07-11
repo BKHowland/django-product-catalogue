@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from .models import Product, Category, Tag
 from django.db.models import Q
-
+from django.views.decorators.http import require_GET
 
 # Create your views here.
+@require_GET
 def product_list(request):
     """
     Handles requests to the product list page.
