@@ -24,19 +24,29 @@ def product_list(request):
     categories = Category.objects.all()
     tags = Tag.objects.all()
 
+    # check param values for correctness
+    query_data = {
+        "search": request.GET.get("search", ""),
+        "category": request.GET.get("category") or None,
+        "tags": request.GET.getlist("tags"),
+    }
+    serializer = ProductSearchQuerySerializer(data=query_data)
+    serializer.is_valid(raise_exception=True)
+    filters = serializer.validated_data
+    
     # get the search query:
-    search_query = request.GET.get("search")
+    search_query = filters.get("search", "")
     if search_query:
         products = products.filter(
             Q(name__icontains=search_query) | Q(description__icontains=search_query)
         )
 
-    category_id = request.GET.get("category")
+    category_id = filters.get("category")
     if category_id:
         # chain across relationships, from product to category to its name.
         products = products.filter(category=category_id)
 
-    tag_ids = request.GET.getlist("tags")
+    tag_ids = filters.get("tags", [])
     if tag_ids:
         # we want to get all products where the tag id is in the tag ids requested.
         products = products.filter(tags__id__in=tag_ids).distinct()
@@ -51,7 +61,7 @@ def product_list(request):
             "tags": tags,
             "search_query": search_query or "",  # avoid None appearing in search box
             "selected_category": int(category_id) if category_id else None,
-            "selected_tags": list(map(int, tag_ids)) if tag_ids else [],
+            "selected_tags": list(map(int, tag_ids)),
         },
     )
 

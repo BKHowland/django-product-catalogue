@@ -18,7 +18,7 @@
                 <input type="text" name="search" placeholder="Search all Products..." value="{{ search_query }}">
                 
                 <select name="category">
-                    <option value=''>All Categories</option>
+                    <option value="">All Categories</option>
                     {% for category in categories %}
                         <option value="{{ category.id }}"
                             {% comment %} category.id is an int, so we have to normalize to str {% endcomment %}
