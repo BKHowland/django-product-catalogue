@@ -9,6 +9,10 @@ class Category(models.Model):
     
     name = models.CharField(max_length=255)
     
+    class Meta():
+        # Correct default plural spelling
+        verbose_name_plural = "Categories"
+    
     # Allows the admin page to display name vs just its id:
     def __str__(self):
         return self.name
