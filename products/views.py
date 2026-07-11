@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import Product, Category, Tag
 from django.db.models import Q
 from django.views.decorators.http import require_GET
+from rest_framework.generics import ListAPIView
+from .serializers import ProductSerializer, ProductSearchQuerySerializer
 
 # Create your views here.
 @require_GET
@@ -52,3 +54,9 @@ def product_list(request):
             "selected_tags": list(map(int, tag_ids)) if tag_ids else [],
         },
     )
+
+
+class ProductListAPIView(ListAPIView):
+    # list all products in JSON format
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
