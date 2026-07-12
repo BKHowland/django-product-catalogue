@@ -42,7 +42,7 @@ class Product(models.Model):
     # link many-to-one relationship with categories. All products belong to one category.
     category = models.ForeignKey(Category, on_delete=models.CASCADE) # cascade to avoid orphan
     # link many-to-many relationship with tags. one product has many tags, tags reused across products.
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True)
     
     # Allows the admin page to display name vs just its id:
     def __str__(self):
