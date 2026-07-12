@@ -4,6 +4,8 @@ from django.db.models import Q
 from django.views.decorators.http import require_GET
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from .serializers import ProductSerializer, ProductSearchQuerySerializer
+from rest_framework import status
+from django.http import HttpResponseBadRequest
 
 # Create your views here.
 @require_GET
@@ -31,7 +33,10 @@ def product_list(request):
         "tags": request.GET.getlist("tags"),
     }
     serializer = ProductSearchQuerySerializer(data=query_data)
-    serializer.is_valid(raise_exception=True)
+    if not serializer.is_valid():
+        return HttpResponseBadRequest(
+            f"Bad request parameters: {serializer.errors}"
+        )
     filters = serializer.validated_data
     
     # get the search query:
