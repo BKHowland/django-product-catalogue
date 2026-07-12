@@ -76,6 +76,25 @@ class ProductListAPIView(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     
+    def get_queryset(self):
+        queryset = (
+            Product.objects.all()
+            .select_related("category")
+            .prefetch_related("tags")
+            .order_by("name")
+        )
+        serializer = ProductSearchQuerySerializer(data=self.request.query_params)
+        serializer.is_valid(raise_exception=True)
+        filters = serializer.validated_data
+        if filters.get("search"):
+            queryset = queryset.filter(Q(name__icontains=filters.get("search")) | Q(description__icontains=filters.get("search")))
+        if filters.get("category"):
+            queryset = queryset.filter(category=filters.get("category"))
+        if filters.get("tags"):
+            queryset = queryset.filter(tags__id__in=filters.get("tags")).distinct()
+            
+        return queryset
+    
 class ProductDetailsAPIView(RetrieveAPIView):
     # get info about specific product
     queryset = Product.objects.all() # specify full pool to search in, dont filter manually. 
