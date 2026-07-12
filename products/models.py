@@ -47,3 +47,7 @@ class Product(models.Model):
     # Allows the admin page to display name vs just its id:
     def __str__(self):
         return self.name
+    
+    class Meta():
+        ordering=["id"]
+        
