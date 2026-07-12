@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Product, Category, Tag
 from django.db.models import Q
 from django.views.decorators.http import require_GET
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
 from .serializers import ProductSerializer, ProductSearchQuerySerializer
 from rest_framework import status
 from django.http import HttpResponseBadRequest
@@ -71,8 +71,8 @@ def product_list(request):
     )
 
 
-class ProductListAPIView(ListAPIView):
-    # list all products in JSON format
+class ProductListAPIView(ListCreateAPIView):
+    # list all products in JSON format or create new product.
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     
@@ -81,7 +81,7 @@ class ProductListAPIView(ListAPIView):
             Product.objects.all()
             .select_related("category")
             .prefetch_related("tags")
-            .order_by("name")
+            # .order_by("pk")
         )
         serializer = ProductSearchQuerySerializer(data=self.request.query_params)
         serializer.is_valid(raise_exception=True)
@@ -95,7 +95,7 @@ class ProductListAPIView(ListAPIView):
             
         return queryset
     
-class ProductDetailsAPIView(RetrieveAPIView):
-    # get info about specific product
+class ProductDetailsAPIView(RetrieveUpdateAPIView):
+    # get info about or update a specific product
     queryset = Product.objects.all() # specify full pool to search in, dont filter manually. 
     serializer_class = ProductSerializer
