@@ -27,31 +27,36 @@ def product_list(request):
     tags = Tag.objects.all()
 
     # check param values for correctness
-    query_data = {
-        "search": request.GET.get("search", ""),
-        "category": request.GET.get("category") or None,
-        "tags": request.GET.getlist("tags"),
-    }
-    serializer = ProductSearchQuerySerializer(data=query_data)
+    query_params = {}
+    if request.GET.get("search"):
+        query_params["search"] = request.GET.get("search")
+    if request.GET.get("category"):
+        query_params["category"] = request.GET.get("category")
+    if request.GET.getlist("tags"):
+        query_params["tags"] = request.GET.getlist("tags")
+        
+    serializer = ProductSearchQuerySerializer(data=query_params)
     if not serializer.is_valid():
         return HttpResponseBadRequest(
             f"Bad request parameters: {serializer.errors}"
         )
-    filters = serializer.validated_data
+        
+    # serializer = ProductSearchQuerySerializer(data=query_params)
+    # if not serializer.is_valid():
+    #     return HttpResponseBadRequest("Invalid query parameters.")
     
-    # get the search query:
-    search_query = filters.get("search", "")
+    search_query = serializer.validated_data.get("search")
     if search_query:
         products = products.filter(
             Q(name__icontains=search_query) | Q(description__icontains=search_query)
         )
 
-    category_id = filters.get("category")
+    category_id = serializer.validated_data.get("category")
     if category_id:
         # chain across relationships, from product to category to its name.
         products = products.filter(category=category_id)
 
-    tag_ids = filters.get("tags", [])
+    tag_ids = serializer.validated_data.get("tags")
     if tag_ids:
         # we want to get all products where the tag id is in the tag ids requested.
         products = products.filter(tags__id__in=tag_ids).distinct()
@@ -66,11 +71,13 @@ def product_list(request):
             "tags": tags,
             "search_query": search_query or "",  # avoid None appearing in search box
             "selected_category": int(category_id) if category_id else None,
-            "selected_tags": list(map(int, tag_ids)),
+            "selected_tags": list(map(int, tag_ids)) if tag_ids else [],
         },
     )
-
-
+    
+    
+    
+# DRF API List CBV 
 class ProductListAPIView(ListCreateAPIView):
     # list all products in JSON format or create new product.
     queryset = Product.objects.all()
