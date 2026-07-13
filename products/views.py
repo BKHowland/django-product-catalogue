@@ -66,6 +66,8 @@ def product_list(request):
         # we want to get all products where the tag id is in the tag ids requested.
         products = products.filter(tags__id__in=tag_ids).distinct()
 
+    # print(str(products.query))
+    
     # params are the request, the template file, plus the catalogue data as a python dict.
     return render(
         request,
