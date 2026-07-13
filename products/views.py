@@ -5,9 +5,14 @@ from django.views.decorators.http import require_GET
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
 from .serializers import ProductSerializer, ProductSearchQuerySerializer
 from rest_framework import status
-from django.http import HttpResponseBadRequest
+from rest_framework.generics import RetrieveAPIView
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from django.http import HttpResponseBadRequest, JsonResponse
+import json
 
 # Create your views here.
+# Regular template FBV
 @require_GET
 def product_list(request):
     """
@@ -102,7 +107,28 @@ class ProductListAPIView(ListCreateAPIView):
             
         return queryset
     
+    
+# DRF API Details CBV
 class ProductDetailsAPIView(RetrieveUpdateAPIView):
     # get info about or update a specific product
     queryset = Product.objects.all() # specify full pool to search in, dont filter manually. 
     serializer_class = ProductSerializer
+
+
+
+# non-DRF  API Detail View FBV
+@require_GET
+def ProductDetailsAPIViewNonDRFFBV(request, pk):
+    if not request.method == 'GET' or not pk:
+        return HttpResponseBadRequest
+    
+    item = Product.objects.get(pk=pk)
+    return JsonResponse({'id':item.pk, 'name':item.name})
+
+    
+# DRF API Detail View FBV
+@api_view() # GET by default
+def ProductDetailsAPIViewDRFFBV(request, pk):
+    item = Product.objects.get(pk=pk)
+    return Response({'name':item.name, 'description':item.description})
+
