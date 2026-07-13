@@ -7,7 +7,7 @@ class Category(models.Model):
     Represents product categories. Each product belongs to exactly one category.
     """
     
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     
     class Meta():
         # Correct default plural spelling
@@ -24,7 +24,7 @@ class Tag(models.Model):
     and tags may be reused for any number of products.
     """
     
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     
     # Allows the admin page to display name vs just its id:
     def __str__(self):
@@ -37,10 +37,10 @@ class Product(models.Model):
     Each product has a name, description, category, and associated tags.
     """
     
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     description = models.TextField()
     # link many-to-one relationship with categories. All products belong to one category.
-    category = models.ForeignKey(Category, on_delete=models.CASCADE) # cascade to avoid orphan
+    category = models.ForeignKey(Category, on_delete=models.PROTECT) # cascade to avoid orphan
     # link many-to-many relationship with tags. one product has many tags, tags reused across products.
     tags = models.ManyToManyField(Tag, blank=True)
     
@@ -49,5 +49,4 @@ class Product(models.Model):
         return self.name
     
     class Meta():
-        ordering=["id"]
-        
+        ordering = ['pk']
